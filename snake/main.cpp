@@ -10,7 +10,11 @@
 #include <mmx/util.hpp>
 #include <mmx/timer.hpp>
 
-#include <windows.h>
+#ifdef _WIN32
+	#include <windows.h>
+#else
+	#include <thread>
+#endif
 
 const int SCREEN_WIDTH  = 640;
 const int SCREEN_HEIGHT = 480;
@@ -189,7 +193,11 @@ struct snake {
 		
 			try_eat_food();
 
+			#ifdef _WIN32
 			::Sleep(level);
+			#else
+			std::this_thread::sleep_for(std::chrono::duration::milliseconds(level));
+			#endif
 			for (auto& b : body)
 				b.update();
 		}
