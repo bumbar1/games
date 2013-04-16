@@ -1,7 +1,19 @@
+#include "console.hpp"
 #include "engine.hpp"
 #include "state.hpp"
 
-void GameEngine::init(const char* title, int width, int height, int argc, char** args ) {
+void GameEngine::init(const char* title, int width, int height) {
+	//console = new GameConsole;
+	//console.init();
+
+	//screen = new sf::RenderWindow(sf::VideoMode(width, height), title);
+	screen.create(sf::VideoMode(width, height), title);
+	//screen.setFramerateLimit(console.get("max_fps"));
+	//screen.setVerticalSyncEnabled(console.get("vsync"));
+	screen.setFramerateLimit(60);
+	screen.setVerticalSyncEnabled(true);
+
+	elapsed = 0;
 	_running = true;
 }
 
@@ -49,18 +61,14 @@ void GameEngine::popState() {
 	}
 }
 
-
 void GameEngine::handleEvents() {
-	// let the state handle events
-	_states.back()->handleEvents(this);
+	_states.back()->handleEvents(this);		// let the state handle events
 }
 
 void GameEngine::update() {
-	// let the state update the game
-	_states.back()->update(this);
+	_states.back().update(this);	       // let the state update the game
 }
 
-void GameEngine::draw() {
-	// let the state draw the screen
-	_states.back()->draw(this);
+void GameEngine::render() {
+	_states.back()->render(this);			// let the state render the screen
 }

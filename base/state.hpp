@@ -5,6 +5,12 @@ class GameEngine;
 
 class GameState {
 public:
+	GameState(const GameState& ) = delete;
+	GameState& operator = (const GameState& ) = delete;
+	
+	GameState(GameState&& ) = delete;
+	GameState&& operator = (GameState&& ) = delete;
+	
 	virtual void init() = 0;
 	virtual void cleanup() = 0;
 
@@ -13,7 +19,7 @@ public:
 
 	virtual void handleEvents(GameEngine* game) = 0;
 	virtual void update(GameEngine* game) = 0;
-	virtual void draw(GameEngine* game) = 0;
+	virtual void render(GameEngine* game) = 0;
 
 	void changeState(GameEngine* game, GameState* state);
 

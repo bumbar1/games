@@ -4,11 +4,10 @@
 
 #include <cmath>
 #include <iostream>
+#include <fstream>
 
-#include <mmx/vector2.hpp>
 #include <mmx/util.hpp>
-
-#include <windows.h>
+#include <mmx/vector2.hpp>
 
 const int SCREEN_WIDTH  = 640;
 const int SCREEN_HEIGHT = 480;
@@ -160,7 +159,6 @@ void draw_score() {
 }
 
 void update() {
-	//Sleep(100);
 	
 	ball.p += ball.v;
 	
@@ -255,14 +253,6 @@ void runMainLoop( int val ) {
 
 int main( int argc, char* argv[] ) {
 	
-	/*if (argc == 1) {
-		std::cout << "usage: " << argv[0] << " [options]\n"
-				  << "options:\n"
-				  << "\t -s server mode\n"
-				  << "\t -c client mode, ip address must follow\n";
-		return 1;
-	}*/
-	
 	//Initialize FreeGLUT
 	glutInit( &argc, argv );
 
@@ -287,6 +277,6 @@ int main( int argc, char* argv[] ) {
 
 	//Start GLUT main loop
 	glutMainLoop();
-
+	
 	return 0;
 }
